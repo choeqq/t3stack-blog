@@ -4,13 +4,13 @@ import { withTRPC } from "@trpc/next";
 import { loggerLink } from "@trpc/client/links/loggerLink";
 import { httpBatchLink } from "@trpc/client/links/httpBatchLink";
 import superjson from "superjson";
+import { AppRouter } from "../server/route/app.router";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
 }
 
-//todo add Router to generic
-export default withTRPC({
+export default withTRPC<AppRouter>({
   config({ ctx }) {
     const url = process.env.NEXT_PUBLIC_VERCEL_URL
       ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/trpc`
@@ -46,4 +46,4 @@ export default withTRPC({
     };
   },
   ssr: false,
-});
+})(MyApp);

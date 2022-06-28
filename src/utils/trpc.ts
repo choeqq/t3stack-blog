@@ -1,5 +1,4 @@
-import {createReactQueryHooks} from '@trpc/react'
+import { createReactQueryHooks } from "@trpc/react";
+import { AppRouter } from "../server/route/app.router";
 
-
-// todo add appTouer as generic
-export const trpc = createReactQueryHooks();
+export const trpc = createReactQueryHooks<AppRouter>();
